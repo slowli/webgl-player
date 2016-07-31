@@ -1,6 +1,8 @@
 {
   "name": "webgl-player",
   "version": "0.1.0",
+  "repository": "git://github.com/slowli/webgl-player.git",
+  "homepage": "https://github.com/slowli/webgl-player",
   "description": "WebGL Player",
   "main": "app.js",
   "scripts": {

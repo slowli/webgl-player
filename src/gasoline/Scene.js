@@ -1,5 +1,5 @@
 /**
- * Thin film interference demo.
+ * Thin film interference scene.
  *
  * @author Alex Ostrovski
  */

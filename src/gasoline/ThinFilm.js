@@ -18,10 +18,11 @@ var ThinFilmShader = {
 			thicknessOffsetRepeat: { type: 'v4', value: new THREE.Vector4(0, 0, 1, 1) },
 			time: { type: 'f', value: 0.0 },
 			interferencePower: { type: 'f', value: 1.0 },
-			referencePoint: { type: 'v3', value: new THREE.Vector3() },
 			minThickness: { type: 'f', value: 0.0 },
 			maxThickness: { type: 'f', value: 1.0 },
 			opacity: { type: 'f', value: 0.1 },
+			
+			// Inflation is needed in order not to clip the thin film mesh with the main mesh
 			inflation: { type: 'f', value: 0.01 }
 		}
 	]),
@@ -35,7 +36,6 @@ var ThinFilmShader = {
 		'varying vec3 vNormal;',
 		'varying vec3 vViewPosition;',
 		
-		'uniform vec3 referencePoint;',
 		'uniform float inflation;',
 		
 		'void main() {',
@@ -47,7 +47,6 @@ var ThinFilmShader = {
 		'	vec3 inflatedPos = position + inflation * normal;',
 		
 		'	vec4 mvPosition = modelViewMatrix * vec4(inflatedPos, 1.0);',
-		//'	vLocalNormal = position - referencePoint;',
 		'	vNormal = transformedNormal;',
 		'	vViewPosition = -mvPosition.xyz;',
 		
@@ -57,8 +56,8 @@ var ThinFilmShader = {
 	
 	fragmentShader: [
 		'varying vec2 vUv;',
-		'varying vec2 vThicknessUv;',
 		
+		'varying vec2 vThicknessUv;',
 		'uniform float minThickness;',
 		'uniform float maxThickness;',
 		
@@ -67,10 +66,8 @@ var ThinFilmShader = {
 		THREE.ShaderChunk.recursive_noise_2d,
 		
 		'uniform float interferencePower;',
-		'uniform float baseThickness;',
 		
 		'uniform float opacity;',
-
 		'uniform vec3 diffuse;',
 		'uniform vec3 emissive;',
 		'uniform vec3 specular;',
@@ -104,19 +101,19 @@ var ThinFilmShader = {
 		'	float theta = dot(refractedDir, -normal);',
 		
 		'	float reflectTheta = max(dot(viewDir, normal), 0.0);',
-		'	float reflectionFactor = 0.25;',
+		'	float reflectionFactor = 0.4;',
 		'	float reflectance = reflectionFactor + (1.0 - reflectionFactor) * pow(1.0 - reflectTheta, 5.0);',
 		
 		'	vec3 intfColor = vec3(interference(thickness, theta), interference(thickness * 1.29, theta), interference(thickness * 1.45, theta));',
 		
-		'	vec3 surfaceColor = vec3(0.1);',
-		'	vec3 outgoingLight = mix((totalDiffuseLight + ambientLightColor) * (surfaceColor + intfColor * 0.1),',
-		'		vec3(0.1) + totalSpecularLight * (0.75 + intfColor * 1.5), reflectance);',
+		'	vec3 surfaceColor = vec3(0.2);',
+		'	vec3 outgoingLight = mix((totalDiffuseLight + ambientLightColor) * (surfaceColor + intfColor * 0.15),',
+		'		totalSpecularLight * (0.75 + intfColor * 1.5), reflectance);',
 		
 		THREE.ShaderChunk.fog_fragment,
 		
 		'	gl_FragColor = vec4(outgoingLight, 1.0);',
-		'	gl_FragColor.a = opacity * smoothstep(0.0, 1.0, thickness) * reflectTheta;',
+		'	gl_FragColor.a = opacity * smoothstep(0.0, 1.0, thickness);',
 		'}'
 	].join('\n')
 };

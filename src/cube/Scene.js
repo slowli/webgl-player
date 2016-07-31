@@ -1,5 +1,5 @@
 /**
- * Planet system with comets.
+ * Rotating cube.
  * @author Alex Ostrovski
  */
 

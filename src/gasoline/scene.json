@@ -23,12 +23,12 @@
 				"visible": true,
 				
 				"userData": {
-					"thicknessMap": "tex.thinFilm",
+					"thicknessMap": "tex.thinFilm2",
 					"bumpMap": "tex.asphalt",
-					"bumpScale": 0.1,
+					"bumpScale": 0.05,
 					"minThickness": 0,
 					"maxThickness": 3.5,
-					"opacity": 0.5,
+					"opacity": 0.67,
 					"time": 100,
 					"inflation": 1e-4
 				}
@@ -125,7 +125,7 @@
 
 			"dirLight": {
 				"type": "DirectionalLight",
-				"color": 9474192,
+				"color": 11579568,
 				"direction": [0.0, 0.7071, 0.7071]
 			},
 			
@@ -136,15 +136,15 @@
 				"aspect": 1.777778,
 				"near": 0.1,
 				"far": 1000,
-				"position": [40, 2.5, 40],
-				"target": [-10, 0, -10]
+				"position": [0, 30, -40],
+				"target": [0, -30, 40]
 			}
 		},
 
 		"userData": {
 			"fog": {
 				"type": "linear",
-				"color": 10526880,
+				"color": 11579568,
 				"near": 125,
 				"far": 200
 			}
@@ -329,6 +329,12 @@
 			"uuid": "tex.thinFilm",
 			"image": "img.film",
 			"wrap": [1000, 1000]
+		},
+		{
+			"uuid": "tex.thinFilm2",
+			"image": "img.film",
+			"wrap": [1000, 1000],
+			"repeat": [5, 5]
 		}
 	]
 }

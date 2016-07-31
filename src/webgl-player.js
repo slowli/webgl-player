@@ -32,8 +32,6 @@ function patchedObjectLoaderParse( json, onLoad ) {
 
 	return object;
 }
-	
-// TODO 180px (w/ adaptable size); automatic choice based on screen/window width? 
 
 function WebGLPlayer(params) {
 	
@@ -71,15 +69,25 @@ function WebGLPlayer(params) {
 	var FULLSCREEN_EVENT = 'fullscreenchange mozfullscreenchange webkitfullscreenchange msfullscreenchange';
 	
 	var DEFAULT_PARAMS = {
+		// Script dependencies
 		scripts: [],
+		// Scene data
 		data: null,
+		// Scene initializer called when everything is loaded
 		sceneCallback: function(renderer, data) { 
 			return function() { }; 
 		},
+		// Aspect ratio for the player
 		aspectRatio: 16 / 9,
+		// Windowed resolutions for the player
 		windowedRes: [180, 270, 360],
+		// Fullscreen resolutions for the player
 		fullscreenRes: [360, 540, 720],
-		devicePixelRatio: 1
+		// Pixel ratio passed to the renderer. 0 means using window.devicePixelRatio
+		devicePixelRatio: 1,
+		// Whether scripts and data should be reloaded forcefully. 
+		// If false, cached versions of scripts and/or data may be used
+		forceReload: false
 	};
 	
 	params = $.extend(DEFAULT_PARAMS, params);
@@ -109,7 +117,6 @@ function WebGLPlayer(params) {
 	// jQuery controls
 	var jqStartOverlay = null,
 		jqStartBtn = null,
-		//jqControls = null,
 		jqLoading = null,
 		jqLoadingProgress = null,
 		jqLoadingMessages = null,
@@ -138,7 +145,7 @@ function WebGLPlayer(params) {
 		document.webkitExitFullscreen;
 
 	var loadedScripts = 0, totalScripts = 0,
-		loadSuffix = '?v=' + Date.now();
+		loadSuffix = params.forceReload ? ('?v=' + Date.now()) : '';
 
 	preInit();
 	
@@ -242,8 +249,6 @@ function WebGLPlayer(params) {
 		jqResPanel = jqWrapper.find('.webgl-player-popup');
 		jqFullscreenBtn = jqWrapper.find('.webgl-player-fullscreen');
 		
-		
-		
 		// Populate resolution options
 		var templateBtn = jqResPanel.find('button'), i, btn;
 		for (i = 0; i < windowedRes.length; i++) {
@@ -335,13 +340,11 @@ function WebGLPlayer(params) {
 			}).done(function(response) {
 				var loader = new THREE.ObjectLoader();
 				loader.texturePath = THREE.Loader.prototype.extractUrlBase(sceneData);
-				
 				loader.parse = patchedObjectLoaderParse;
 				loader.parse(response, onLoad, sceneData);
 			}).fail(function() {
 				reportError(sceneData);
 			});
-			
 		}, function(script) {
 			reportError(script);
 		});
@@ -383,7 +386,6 @@ function WebGLPlayer(params) {
 			stats = new Stats();
 			stats.domElement.className = 'stats';
 			jqWrapper.prepend($(stats.domElement));
-			
 			toggleStats(statsVisible);
 		} else {
 			statsVisible = false;
@@ -417,7 +419,8 @@ function WebGLPlayer(params) {
 	}
 	
 	/**
-	 * Taken from dev.mozilla.org.
+	 * Converts base64 string to a uint8 array.
+	 * Taken from developers.mozilla.org.
 	 * 
 	 * @param sBase64
 	 * @returns {Uint8Array}

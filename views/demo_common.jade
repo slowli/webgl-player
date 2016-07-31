@@ -1,0 +1,49 @@
+extends ./layout.jade
+
+block append init
+  -
+    //- demoTitle, demoDir, scripts and demoSceneClass should be declared in concrete demo pages 
+    for (var i = 0; i < scripts.length; i++) {
+        scripts[i] = staticRoot + scripts[i];
+    }
+ 
+    var loadedScripts = '';
+    if (!debug) {
+        loadedScripts = '"' + scripts.join('", "') + '"';
+    }
+
+block prepend styles
+  link(rel="stylesheet", type="text/css", href=app_files.css)
+block append scripts
+  script(src="http://code.jquery.com/jquery-1.11.3.min.js")
+  script(src=app_files.main)
+  if debug
+    each scriptSrc in scripts
+      script(src=scriptSrc)
+
+block title
+  title #{demoTitle} | WebGL Player
+
+block content
+  h1 #{demoTitle}
+  block demoDescription
+  
+  #player.res180(title=demoTitle)
+  script.
+    $(function() {
+        WebGLPlayer({
+            wrapper:  $('#player'),
+            data: '#{staticRoot}/#{demoDir}/scene.json',
+            scripts: [ !{loadedScripts} ],
+            sceneCallback: function(renderer, data) {
+               return new #{demoSceneClass}(renderer, data);
+            },
+            devicePixelRatio: #{dpRatio}
+        });
+    });
+    
+  h2 How it Should Look
+  figure.preview
+    img(src=staticRoot + '/' + demoDir + '/preview.jpg')
+
+  block demoDetails

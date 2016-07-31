@@ -1,0 +1,3 @@
+# Ignore all files (they should be downloaded here by the /three.sh script)
+*
+!.gitignore

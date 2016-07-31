@@ -1,0 +1,16 @@
+extends ./demo_common.jade
+
+block prepend init
+  -
+    var scripts = [
+        '/three/three.batch.js', 
+        '/cube/Scene.js'
+    ];
+    var demoDir = 'cube';
+    var demoSceneClass = 'THREE.CubeScene';
+
+block title
+  title Cube | WebGL Player
+
+block demoDescription
+  p This is a simple scene containing a single rotating blue cube.

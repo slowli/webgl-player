@@ -1,0 +1,55 @@
+-
+  var staticRoot = url_root + "/static";
+  var app_files = {
+      main: staticRoot + "/webgl-player-" + app_version + ".min.js",
+      //main: staticRoot + "/webgl-player.js",
+      css: staticRoot + "/webgl-player-" + app_version + ".min.css",
+      zip: staticRoot + "/webgl-player-" + app_version + ".zip"
+  };
+
+  var route = function(view, anchor) {
+      if ((view === '') && static_html) view = 'index';
+      var url = url_root + '/' + view + (static_html ? '.html' : '');
+      if (anchor !== undefined) url += '#' + anchor;
+      return url;
+  };
+
+block init
+doctype html
+html(lang="en")
+  head
+    meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+    meta(name="language", content="en")
+    meta(name="viewport" content="width=device-width")
+    block styles
+      link(rel="stylesheet", type="text/css", href=staticRoot + "/main.css")
+    block scripts
+    block title
+      title WebGL Player
+  body
+    header(class="main-header")
+      block header
+        h1 WebGL Player
+      nav.head-menu
+        ul
+          li
+            a(href=route("", "start")) Getting Started
+          li
+            a(href=route("", "demos")) Demos
+    .main-content
+       block content
+    footer(class="main-footer")
+      block footer
+        div(class=["foot-block", "copyright", "separated"]).
+          (c) 2015 Alex Ostrovski
+        nav.foot-block
+            h3 Demos
+            ul
+              li
+                a(href=route("cube")) Cube
+              li
+                a(href=route("planets")) Planets
+              li
+                a(href=route("lake")) Night Lake
+              li
+                a(href=route("gasoline")) Gasoline 

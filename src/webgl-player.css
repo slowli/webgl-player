@@ -1,0 +1,274 @@
+@font-face {
+	font-family: icons;
+	src: url('icons.woff?refresh') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+.webgl-player {
+	margin: 0 auto;
+	border: 2px solid #444;
+	position: relative;
+	line-height: 1;
+	font-family: Verdana,Arial,sans-serif;
+}
+
+/* Removes undesired padding in buttons in Firefox. */
+.webgl-player button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+
+.webgl-player,
+.webgl-player * {
+	box-sizing: border-box;
+}
+
+.webgl-player:focus {
+	border-color: #fb0;
+}
+
+.webgl-player .stats {
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 4px;
+}
+
+.webgl-player-start {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 20px;
+	background: #000;
+	color: #fff;
+	z-index: 100;
+}
+
+.webgl-player-start h2 {
+	font-family: inherit;
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+	text-align: left;
+}
+
+.webgl-player-start a.start {
+	display: inline-block;
+	color: #fff !important;
+	background: none !important;
+	border: none !important;
+	text-decoration: none !important;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -60px;
+	margin-top: -52px;
+	padding: 16px 36px;
+}
+.webgl-player-start a.start:before {
+	font: 400 60px/72px icons;
+	content: '\e800';
+}
+
+.webgl-player-start a.start:hover,
+.webgl-player-start a.start:focus {
+	color: #fb0 !important;
+	background: none !important;
+	border: none !important;
+	text-decoration: none !important;
+}
+
+.webgl-player-start p {
+	font-size: 14px;
+	line-height: 1.5;
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+.webgl-player-start .loading {
+	display: none;
+	font-weight: bold;
+}
+
+.webgl-player-start .loading .progress-c {
+	width: 80%;
+	height: 32px;
+	display: inline-block;
+	border: 1px solid #fff;
+	padding: 2px;
+}
+
+.webgl-player-start .loading .progress {
+	height: 26px;
+	background: #fff;
+	width: 0%;
+}
+
+.webgl-player-start .error {
+	color: #fb0;
+}
+.webgl-player-start .error .progress-c {
+	display: none;
+}
+
+.webgl-player-controls {
+	font-size: 14px;
+	color: white;
+	margin: 0;
+	padding: 2px 4px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.webgl-player-controls .right {
+	float: right;
+}
+
+.webgl-player-popup {
+	position: absolute;
+	height: 36px;
+	right: 0px;
+	top: -40px;
+	margin: 2px;
+	display: none;
+}
+
+.webgl-player-controls button {
+	background: transparent;
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: bold;
+	color: white;
+	padding: 0;
+	margin: 2px;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	vertical-align: top;
+	opacity: 0.33;
+	transition: opacity 0.2s;
+}
+.webgl-player-controls button.text {
+	width: auto;
+	padding: 0 8px;
+}
+.webgl-player-controls button:hover {
+	opacity: 1.0;
+}
+.webgl-player-controls button.active {
+	background: #fb0;
+	opacity: 1.0;
+}
+
+.webgl-player-pause:before {
+	font: 400 20px/32px icons;
+	content: '\e801';
+}
+.webgl-player-resume:before {
+	font: 400 20px/32px icons;
+	content: '\e800';
+}
+.webgl-player-stats:before {
+	font: 400 20px/32px icons;
+	content: '\e802';
+}
+.webgl-player-capture:before {
+	font: 400 20px/32px icons;
+	content: '\e805';
+}
+.webgl-player-fullscreen:before {
+	font: 400 20px/32px icons;
+	content: '\e803';
+}
+
+.webgl-player canvas {
+	display: block;
+}
+
+/**
+ * Fullscreen mode. Lots of duplicate code here.
+ */
+
+.webgl-player:fullscreen {
+	margin: 0;
+	border: none;
+	background: #000;
+	width: 100%;
+	height: 100%;
+}
+.webgl-player:-moz-full-screen {
+	margin: 0;
+	border: none;
+	background: #000;
+	width: 100%;
+	height: 100%;
+}
+.webgl-player:-webkit-full-screen {
+	margin: 0;
+	border: none;
+	background: #000;
+	width: 100%;
+	height: 100%;
+}
+.webgl-player:-ms-fullscreen {
+	margin: 0;
+	border: none;
+	background: #000;
+	width: 100%;
+	height: 100%;
+}
+
+.webgl-player:fullscreen canvas {
+	margin: 0 auto;
+}
+.webgl-player:-moz-full-screen canvas {
+	margin: 0 auto;
+}
+.webgl-player:-webkit-full-screen canvas {
+	margin: 0 auto;
+}
+.webgl-player:-ms-fullscreen canvas {
+	margin: 0 auto;
+}
+
+.webgl-player:fullscreen .webgl-player-controls {
+	max-width: 600px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 4px auto;
+}
+.webgl-player:-moz-full-screen .webgl-player-controls {
+	max-width: 600px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 4px auto;
+}
+.webgl-player:-webkit-full-screen .webgl-player-controls {
+	max-width: 600px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 4px auto;
+}
+.webgl-player:-ms-fullscreen .webgl-player-controls {
+	max-width: 600px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 4px auto;
+}

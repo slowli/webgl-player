@@ -1,0 +1,25 @@
+extends ./demo_common.jade
+
+block prepend init
+  -
+    var scripts = [
+        '/three/three.batch.js',
+        '/common/utils.js',
+        '/common/StarrySky.js',
+        '/common/Mirror.js',
+        '/lake/RefractiveWater.js',
+        '/lake/Firefly.js',
+        '/lake/NorthernLights.js',
+        '/lake/Scene.js'
+    ];
+    var demoTitle = 'Night Lake';
+    var demoDir = 'lake';
+    var demoSceneClass = 'THREE.NightLakeScene';
+
+block demoDescription
+  p.
+    A scene with a night lake with some rocks in it, five fireflies, some stars, and northern lights.
+    The main goal of the scene is to demonstrate two shaders:
+  ul
+    li the refractive water shader
+    li the northern lights shader.

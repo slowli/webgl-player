@@ -1,0 +1,95 @@
+extends ./layout.jade
+
+block prepend styles
+  link(rel="stylesheet", type="text/css", href=app_files.css)
+block append scripts
+  script(src="http://code.jquery.com/jquery-1.11.3.min.js")
+  script(src=app_files.main)
+block content
+  p(style={"font-size": "18px"}) YouTube-like WebGL player
+  ul
+    li Supported by all major browsers
+    li Supports user interaction
+    li Uses <a href="http://jquery.com/">jQuery</a> and <a href="http://threejs.org/">THREE.js</a>
+
+  #player(title="Try it now!")
+  script.
+    $(function() {
+        WebGLPlayer({
+            wrapper:  $('#player'),
+            data: '#{staticRoot}/cube/scene.json',
+            scripts: [
+                '#{staticRoot}/three/three.batch.js',
+                '#{staticRoot}/cube/Scene.js'
+            ],
+            sceneCallback: function(renderer, data) {
+               return new THREE.CubeScene(renderer, data);
+            }
+        });
+    });
+  p.dl  
+    a(href=app_files.zip).dl
+      span.dl-main Download version #{app_version}
+      span.dl-aux (minified & zipped)
+  
+  h2#start Getting Started
+  
+  p.
+    WebGL player instances are created using <code>WebGLPlayer</code> function. The functions supports a single argument – a configuration object 
+    with the following fields:
+  
+  h4.param wrapper 
+  p.
+    A jQuery wrapper for an HTML element acting as a container for the player (usually, an empty <b>&lt;div&gt;</b>).
+    The initial height of the player can be encoded as a class of the container, e.g. <code>res480</code> class suggests
+    the height of 480 pixels. 
+    The title attribute of the container determines the player caption.
+    
+  h4.param scene 
+  p.
+    URL for a JSON file containing scene data. Scene data is loaded using the THREE.ObjectLoader class. 
+    See <a href="http://threejs.org/docs/index.html#Reference/Loaders/ObjectLoader" target="_blank">THREE.js documentation</a> for more details.
+  p.
+    If scene is <b>false</b> (the default value), no scene data is loaded. You are responsible for populating the scene with objects.
+        
+  h4.param scripts
+  p.
+    An array of URLs for scripts loaded when the player is launched. Scripts may include THREE.js core files. Scripts are loaded in the specified order.
+        
+  h4.param sceneCallback  
+  p.
+    Function called when the scripts and the scene data are loaded. The function should accept two arguments:
+    <b>(1)</b> THREE.js <a href="http://threejs.org/docs/index.html#Reference/Renderers/WebGLRenderer" target="_blank">WebGLRenderer</a> instance and <b>(2)</b> scene data.
+  p.
+    Callback function should return an object that will be used to render the scene. The returned object should have the following methods:      
+  ul
+    li <b>render</b> – a rendering function with the one argument: time difference in seconds between the current and the previous rendering calls.
+    li <b>onresize</b> – an optional hook to execute after the rendering resolution is changed. Received parameters are new rendering width and height.
+      
+  
+  h2#demos Demos
+  p These demos illustrate the core aspects of WebGL Player.
+    
+  a(class="demo-option", href=route("cube"))
+    img(src=staticRoot + '/cube/preview.jpg')
+    .caption Cube
+    .details.
+      A simple scene containing a single rotating cube.
+      
+  a(class="demo-option", href=route("planets"))
+    img(src=staticRoot + '/planets/preview.jpg')
+    .caption Planets
+    .details.
+      A scene with planets and comets demonstrating particle systems.
+	  
+  a(class="demo-option", href=route("lake"))
+    img(src=staticRoot + '/lake/preview.jpg')
+    .caption Night Lake
+    .details.
+      Water refraction and northern lights.
+	  
+  a(class="demo-option", href=route("gasoline"))
+    img(src=staticRoot + '/gasoline/preview.jpg')
+    .caption Gasoline
+    .details.
+      Interference in thin films.

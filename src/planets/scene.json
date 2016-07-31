@@ -1,0 +1,397 @@
+{
+	"metadata": {
+		"formatVersion": 3.2,
+		"type" : "scene"
+	},
+	
+	"object": {
+		"type": "Scene",
+		"position" : [ 0, 0, 0 ],
+		"rotation" : [ 0, 0, 0 ],
+		"scale"	   : [ 1, 1, 1 ],
+		"visible"  : true,
+		"children" : {
+			"stars": {
+				"name": "stars",
+				"type": "Object3D",
+				"position": [0, 0, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"userData": {
+					"starSprite": "tex.star",
+					"nStars": 1000, 
+					"radius": 300.0,
+					"minSpriteSize": 2.0,
+					"maxSpriteSize": 3.5
+				}
+			},
+		
+			"sun": {
+				"type": "Mesh",
+				"geometry": "geom.planet",
+				"material": "mat.placeholder",
+				"position": [0, 0, 0],
+				"rotation": [0, 0, 0],
+				"scale": [2, 2, 2],
+				"visible": true,
+				
+				"userData": {
+					"planet": true,
+					"mass": -125,
+					"radius": 2.1,
+					"lighting": false,
+					"surfaceColor": "#fffff0",
+					"cloudColor": "#c0a020",
+					"cloudSpeed": 0.05,
+					"cloudIntencity": 2.0,
+					"cloudSampler": "tex.clouds",
+					"rotationAxis": [0, 1, 0],
+					"rotationSpeed": 0.2
+				}
+			},
+			
+			"planet-1": {
+				"type": "Mesh",
+				"geometry": "geom.planet",
+				"material": "mat.placeholder",
+				"position": [15, 0, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"userData": {
+					"planet": true,
+					"mass": 40,
+					"radius": 1.1,
+					"surfaceColor": "#ffb040",
+					"cloudColor": "#404040",
+					"cloudSpeed": 0.2,
+					"cloudIntencity": 1.0,
+					"cloudSampler": "tex.clouds",
+					"rotationAxis": [0.0995, 0.9950, 0],
+					"rotationSpeed": 1.0,
+					"orbitE": 0,
+					"orbitSpeed": 0.25,
+					"orbitFocus": [0, 0, 0]
+				}
+			},
+			
+			"planet-2": {
+				"type": "Mesh",
+				"geometry": "geom.planet",
+				"material": "mat.placeholder",
+				"position": [0, -1, -27],
+				"rotation": [0, 0, 0],
+				"scale": [2, 2, 2],
+				"visible": true,
+				
+				"userData": {
+					"planet": true,
+					"mass": 75,
+					"radius": 2.1,
+					"surfaceColor": "#2060a0",
+					"cloudColor": "#d0d0d0",
+					"cloudSpeed": 0.1,
+					"cloudIntencity": 1.5,
+					"cloudSampler": "tex.clouds",
+					"rotationAxis": [0.2822, 0.9407, 0.1881],
+					"rotationSpeed": -0.2,
+					"orbitE": 0.05,
+					"orbitSpeed": 0.15,
+					"orbitFocus": [0, 0, 0]
+				}
+			},
+			
+			"planet-3": {
+				"type": "Mesh",
+				"geometry": "geom.planet",
+				"material": "mat.placeholder",
+				"position": [45, 2, 0],
+				"rotation": [0, 0, 0],
+				"scale": [4, 4, 4],
+				"visible": true,
+				
+				"userData": {
+					"planet": true,
+					"mass": 100,
+					"radius": 4.1,
+					"surfaceColor": "#4040ff",
+					"cloudColor": "#20ffd0",
+					"cloudSpeed": 0.05,
+					"cloudIntencity": 2.75,
+					"cloudSampler": "tex.clouds",
+					"rotationAxis": [0, 0.8944, -0.4472],
+					"rotationSpeed": 1.7,
+					"orbitE": 0.1,
+					"orbitSpeed": 0.1,
+					"orbitFocus": [0, 0, 0]
+				}
+			},
+			
+			"planet-4": {
+				"type": "Mesh",
+				"geometry": "geom.planet",
+				"material": "mat.placeholder",
+				"position": [5, -5, 70],
+				"rotation": [0, 0, 0],
+				"scale": [2.5, 2.5, 2.5],
+				"visible": true,
+				
+				"userData": {
+					"planet": true,
+					"mass": 70,
+					"radius": 1.1,
+					"surfaceColor": "#202020",
+					"cloudColor": "#ffffff",
+					"cloudSpeed": 0.5,
+					"cloudIntencity": 2.0,
+					"cloudSampler": "tex.clouds",
+					"rotationAxis": [0.2722, 0.6804, -0.6804],
+					"rotationSpeed": 0.4,
+					"orbitE": 0.2,
+					"orbitSpeed": 0.05,
+					"orbitFocus": [0, 0, 0]
+				}
+			},
+			
+			"comet-1": {
+				"type": "Mesh",
+				"geometry": "geom.comet",
+				"material": "mat.comet-1",
+				"position": [0, 10, 20],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"children": {
+					"comet-1-light": {
+						"type": "PointLight",
+						"color": "#ff4444",
+						"distance": 40,
+						"position": [0, 0, 0],
+						
+						"userData": {
+							"halo": true,
+							"lightRadius": 0.4,
+							"haloSize": 7.5
+						}
+					}
+				},
+				
+				"userData": {
+					"comet": true,
+					"particleCount": 5000,
+					"color": "#ff4444",
+					"moveOptions": {
+						"nControls": 5,
+						"boundingBox": {
+							"min": [-60, -10, -60],
+							"max": [60, 10, 60]
+						},
+						"minAngleCos": 0,
+						"travelDistance": {
+							"min": 20,
+							"max": 80
+						},
+						"travelTime": {
+							"min": 15,
+							"max": 25
+						}
+					}
+				}
+			},
+			
+			"comet-2": {
+				"type": "Mesh",
+				"geometry": "geom.comet",
+				"material": "mat.comet-2",
+				"position": [-15, 10, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"children": {
+					"comet-2-light": {
+						"type": "PointLight",
+						"color": "#44ff44",
+						"distance": 40,
+						"position": [0, 0, 0],
+						
+						"userData": {
+							"halo": true,
+							"lightRadius": 0.4,
+							"haloSize": 7.5
+						}
+					}
+				},
+				
+				"userData": {
+					"comet": true,
+					"particleCount": 5000,
+					"color": "#44ff44"
+				}
+			},
+			
+			"comet-3": {
+				"type": "Mesh",
+				"geometry": "geom.comet",
+				"material": "mat.comet-3",
+				"position": [0, 0, 30],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"children": {
+					"comet-3-light": {
+						"type": "PointLight",
+						"color": "#4444ff",
+						"distance": 40,
+						"position": [0, 0, 0],
+						
+						"userData": {
+							"halo": true,
+							"lightRadius": 0.4,
+							"haloSize": 7.5
+						}
+					}
+				},
+				
+				"userData": {
+					"comet": true,
+					"particleCount": 5000,
+					"color": "#4444ff"
+				}
+			},
+			
+			"comet-4": {
+				"type": "Mesh",
+				"geometry": "geom.comet",
+				"material": "mat.comet-4",
+				"position": [10, -10, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"children": {
+					"comet-4-light": {
+						"type": "PointLight",
+						"color": "#ffff44",
+						"distance": 40,
+						"position": [0, 0, 0],
+						
+						"userData": {
+							"halo": true,
+							"lightRadius": 0.4,
+							"haloSize": 7.5
+						}
+					}
+				},
+				
+				"userData": {
+					"comet": true,
+					"particleCount": 5000,
+					"color": "#ffff44"
+				}
+			},
+			
+			"ambientLight": {
+				"type": "AmbientLight",
+				"color": 1052688
+			},
+			"sunLight": {
+				"type": "PointLight",
+				"color": 15786160,
+				"intensity": 1.25,
+				"position": [0, 0, 0],
+				
+				"userData": {
+					"halo": true,
+					"lightRadius": 3.0,
+					"haloSize": 30.0
+				}
+			},
+			
+			"camera": {
+				"name": "camera",
+				"type": "PerspectiveCamera",
+				"fov": 60,
+				"aspect": 1.777778,
+				"near": 0.1,
+				"far": 1000,
+				"position": [30, 20, 30],
+				"target": [0, 0, 0]
+			}
+		}
+	},
+	
+	"geometries": [
+		{
+			"uuid": "geom.planet",
+			"type": "SphereGeometry",
+			"radius": 1.0,
+			"widthSegments": 48,
+			"heightSegments": 32
+		},
+		{
+			"uuid": "geom.comet",
+			"type": "SphereGeometry",
+			"radius": 0.2,
+			"widthSegments": 16,
+			"heightSegments": 16
+		}
+	],
+	
+	"embeds": {},
+	
+	"materials": [
+		{
+			"uuid": "mat.placeholder",
+			"type": "MeshBasicMaterial",
+			"color": 12632256
+		},
+		{
+			"uuid": "mat.comet-1",
+			"type": "MeshBasicMaterial",
+			"color": "#ff4444"
+		},
+		{
+			"uuid": "mat.comet-2",
+			"type": "MeshBasicMaterial",
+			"color": "#44ff44"
+		},
+		{
+			"uuid": "mat.comet-3",
+			"type": "MeshBasicMaterial",
+			"color": "#4444ff"
+		},
+		{
+			"uuid": "mat.comet-4",
+			"type": "MeshBasicMaterial",
+			"color": "#ffff44"
+		}
+	],
+	
+	"images": [
+		{ "uuid": "im.spark", "url": "spark.png" },
+		{ "uuid": "im.star", "url": "star-in-space.png" },
+		{ "uuid": "im.halo", "url": "flare.png" },
+		{ "uuid": "im.clouds", "url": "thin-film-slow.jpg" }
+	],
+	
+	"textures": [
+		{
+			"uuid": "tex.particle",
+			"image": "im.spark"
+		},
+		{
+			"uuid": "tex.star",
+			"image": "im.star"
+		},
+		{
+			"uuid": "tex.halo",
+			"image": "im.halo"
+		}
+	]
+}

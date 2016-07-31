@@ -1,0 +1,20 @@
+extends ./demo_common.jade
+
+block prepend init
+  -
+    var scripts = [
+        '/three/three.batch.js',
+        '/common/utils.js',
+        '/common/Mirror.js',
+        '/gasoline/OilyWater.js',
+        '/gasoline/ThinFilm.js',
+        '/gasoline/Scene.js'
+    ];
+    var demoTitle = 'Gasoline';
+    var demoDir = 'gasoline';
+    var demoSceneClass = 'THREE.GasolineScene';
+
+block demoDescription
+  p.
+    Gasoline is everywhere: on the barrels, on the asphalt, and in the pool!
+    Gasoline is rendered with the help of a thim films shader.

@@ -1,0 +1,27 @@
+extends ./demo_common.jade
+
+block prepend init
+  -
+   var scripts = [
+        '/three/three.batch.js',
+        '/common/utils.js',
+        '/common/LightsPass.js',
+        '/common/StarrySky.js',
+        '/planets/ParticleSource.js',
+        '/planets/Planet.js',
+        '/planets/Comet.js',
+        '/planets/Scene.js'
+    ];
+    var demoDir = 'planets';
+    var demoSceneClass = 'THREE.PlanetsScene';
+
+block title
+  title Planets | WebGL Player
+
+block demoDescription
+  p.
+    This scene contains four planets orbiting a sun and four comets (not to scale).
+    The scene demonstrates the following technologies:
+  ul
+    li particle systems (used both for rendering and particle physics)
+    li post-processing for Sun and comets' flares.

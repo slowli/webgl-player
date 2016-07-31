@@ -1,0 +1,353 @@
+{
+	"metadata": {
+		"formatVersion": 3.2,
+		"type" : "scene"
+	},
+
+	"object": {
+		"type": "Scene",
+		"position" : [ 0, 0, 0 ],
+		"rotation" : [ 0, 0, 0 ],
+		"scale"	   : [ 1, 1, 1 ],
+		"visible"  : true,
+		"children" : {
+			"stars": {
+				"name": "stars",
+				"type": "Object3D",
+				"position": [0, 0, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"userData": {
+					"starSprite": "tex.star",
+					"nStars": 500, 
+					"radius": 300.0,
+					"minSpriteSize": 7.5,
+					"maxSpriteSize": 17.5
+				}
+			},
+			
+			"northernLights": {
+				"name": "northernLights",
+				"type": "Mesh",
+				"geometry": "geom.northernLights",
+				"material": "mat.placeholder",
+				"position": [125, 70, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1.0, 1.0, 1.5],
+				"visible": true,
+				
+				"userData": {
+					"noiseSampler": "tex.northernLightsNoise",
+					"lightColor": "#00ff20",
+					"diffuseColor": "#4040c0",
+					"transform": [
+						400.0, 300.0, 0, 0,
+						0.0, 10.0, 0.0, 0.0,
+						0.0, 0.0, 0, 0.0,
+						0, 0, 0, 0.025
+					]
+				}
+			},
+			
+			"waterFloor": {
+				"type": "Mesh",
+				"geometry": "geom.water",
+				"material": "mat.waterFloor",
+				"position": [0, -2.5, 0],
+				"rotation": [-1.570796, 0.0, 0.0],
+				"scale": [1, 1, 1],
+				"visible": true
+			},
+			"water": {
+				"name": "water",
+				"type": "Mesh",
+				"geometry": "geom.water",
+				"material": "mat.placeholder",
+				"position": [0, 0, 0],
+				"rotation": [-1.570796, 0.0, 0.0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"userData": {
+					"normals": "tex.waterNormals",
+					"textureWidth": 512,
+					"textureHeight": 512
+				}
+			},
+			
+			"rock": {
+				"name": "rock",
+				"type": "Mesh",
+				"geometry": "geom.rock",
+				"material": "mat.rock",
+				"position": [0, 0, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"userData": {
+					"count": 40,
+					"minPosition": [-15, -1.5, -15],
+					"maxPosition": [15, -1.5, 15],
+					"minScale": [0.3, 0.3, 0.3],
+					"maxScale": [1.5, 0.6, 1.5]
+				}
+			},
+			
+			"firefly-1": {
+				"type": "Mesh",
+				"geometry": "geom.firefly",
+				"material": "mat.placeholder",
+				"position": [0, 2, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"children": {
+					"firefly-1-light": {
+						"type": "PointLight",
+						"color": 12648352,
+						"distance": 10,
+						"position": [0, 0, 0]
+					}
+				},
+				
+				"userData": {
+					"firefly": true,
+					"color": "#c0ffa0",
+					"moveOptions": {
+						"nControls": 5,
+						"boundingBox": {
+							"min": [-20, 0.5, -20],
+							"max": [20, 5, 20]
+						},
+						"minAngleCos": 0,
+						"travelDistance": {
+							"min": 10.0, 
+							"max": 50.0
+						},
+						"travelTime": {
+							"min": 7.5, 
+							"max": 12.5
+						}
+					},
+					"sleepP": 0.2,
+					"sleepDuration": {
+						"min": 2.0,
+						"max": 4.0
+					}
+				}
+			},
+			
+			"firefly-2": {
+				"type": "Mesh",
+				"geometry": "geom.firefly",
+				"material": "mat.placeholder",
+				"position": [10, 2, 10],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"children": {
+					"firefly-2-light": {
+						"type": "PointLight",
+						"color": 16752704,
+						"distance": 10,
+						"position": [0, 0, 0]
+					}
+				},
+				
+				"userData": {
+					"firefly": true,
+					"color": "#ffa040",
+					"sleepP": 0.1,
+					"sleepDuration": {
+						"min": 2.0,
+						"max": 4.0
+					}
+				}
+			},
+			
+			"firefly-3": {
+				"type": "Mesh",
+				"geometry": "geom.firefly",
+				"material": "mat.placeholder",
+				"position": [-10, 2, 5],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"children": {
+					"firefly-3-light": {
+						"type": "PointLight",
+						"color": 4259648,
+						"distance": 10,
+						"position": [0, 0, 0]
+					}
+				},
+				
+				"userData": {
+					"firefly": true,
+					"color": "#40ff40",
+					"sleepP": 0.3,
+					"sleepDuration": {
+						"min": 2.0,
+						"max": 4.0
+					}
+				}
+			},
+			
+			"firefly-4": {
+				"type": "Mesh",
+				"geometry": "geom.firefly",
+				"material": "mat.placeholder",
+				"position": [-15, 1, -10],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true,
+				
+				"children": {
+					"firefly-4-light": {
+						"type": "PointLight",
+						"color": 16728319,
+						"distance": 10,
+						"position": [0, 0, 0]
+					}
+				},
+				
+				"userData": {
+					"firefly": true,
+					"color": "#ff40ff",
+					"sleepP": 0.2,
+					"sleepDuration": {
+						"min": 2.0,
+						"max": 4.0
+					}
+				}
+			},
+		
+			"ambientLight": {
+				"type": "AmbientLight",
+				"color": 5267552
+			}, 
+		
+			"camera": {
+				"name": "camera",
+				"type": "PerspectiveCamera",
+				"fov": 60,
+				"aspect": 1.777778,
+				"near": 0.1,
+				"far": 1000,
+				"position": [-2, 5.1, 0]
+			}
+		},
+		
+		"userData": {
+			"fog": {
+				"type": "linear",
+				"color": "#0a1a20",
+				"near": 25,
+				"far": 50
+			}
+		}
+	},
+	
+	"geometries": [
+		{
+			"uuid": "geom.northernLights",
+			"type": "CylinderGeometry",
+			"radiusTop": 75,
+			"radiusBottom": 75,
+			"height": 140,
+			"radialSegments": 50,
+			"openEnded": true
+		},
+		{
+			"uuid": "geom.clouds",
+			"type": "SphereGeometry",
+			"radius": 50,
+			"widthSegments":  48,
+			"heightSegments": 32
+		},
+		{
+			"uuid": "geom.water",
+			"type": "PlaneGeometry",
+			"width": 100,
+			"height": 100
+		},
+		{
+			"uuid": "geom.rock",
+			"type": "SphereGeometry",
+			"radius": 1,
+			"widthSegments": 16,
+			"heightSegments": 16
+		},
+		{
+			"uuid": "geom.firefly",
+			"type": "SphereGeometry",
+			"radius": 0.2,
+			"widthSegments": 16,
+			"heightSegments": 16
+		}
+	],
+	
+	"materials": [
+		{
+			"uuid": "mat.placeholder",
+			"type": "MeshBasicMaterial",
+			"color": 12632256
+		},
+		{
+			"uuid": "mat.waterFloor",
+			"type": "MeshPhongMaterial",
+			"map": "tex.sand", 
+			"color": 6307872,
+			"ambient": 4210752,
+			"specular": 0
+		},
+		{
+			"uuid": "mat.rock",
+			"type": "MeshLambertMaterial",
+			"color": 6307872,
+			"ambient": 6307872,
+			"map": "tex.stone"
+		}
+	],
+	
+	"images": [
+		{ "uuid": "img.northernLightsNoise", "url": "northern-lights.jpg" },
+		{ "uuid": "img.star", "url": "star.png" },
+		{ "uuid": "img.normals", "url": "waternormals.jpg" },
+		{ "uuid": "img.sand", "url": "sand.png" },
+		{ "uuid": "img.stone", "url": "stone.png" }
+	],
+	
+	"textures": [
+		{
+			"uuid": "tex.northernLightsNoise",
+			"image": "img.northernLightsNoise",
+			"wrap": [1000, 1000]
+		},
+		{
+			"uuid": "tex.star",
+			"image": "img.star" 
+		},
+		{
+			"uuid": "tex.waterNormals",
+			"image" : "img.normals",
+			"wrap": [1000, 1000]
+		},
+		{
+			"uuid": "tex.sand",
+			"image": "img.sand",
+			"repeat": [50, 50]
+		},
+		{
+			"uuid": "tex.stone",
+			"image": "img.stone",
+			"repeat": [5, 5]
+		}
+	]
+}

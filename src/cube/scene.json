@@ -1,0 +1,68 @@
+{
+	"metadata": {
+		"formatVersion": 3.2,
+		"type" : "scene"
+	},
+
+	"object": {
+		"type": "Scene",
+		"position" : [ 0, 0, 0 ],
+		"rotation" : [ 0, 0, 0 ],
+		"scale"	   : [ 1, 1, 1 ],
+		"visible"  : true,
+		"children" : {
+
+			"cube": {
+				"type": "Mesh",
+				"name": "cube",
+				"geometry": "geom.cube",
+				"material": "mat.cube",
+				"position": [0, 0, 0],
+				"rotation": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"visible": true
+			},
+			
+			"ambientLight": {
+				"type": "AmbientLight",
+				"color": 2105376
+			},
+			"dirLight": {
+				"type": "DirectionalLight",
+				"color": 12632256,
+				"direction": [0.333333, 0.666667, 0.666667]
+			},
+			
+			"camera": {
+				"name": "camera",
+				"type": "PerspectiveCamera",
+				"fov": 60,
+				"aspect": 1.777778,
+				"near": 0.1,
+				"far": 1000,
+				"position": [30, 20, 30]
+			}
+		}
+	},
+	
+	"geometries": [
+		{
+			"uuid": "geom.cube",
+			"type": "BoxGeometry",
+			"width": 17.5,
+			"height": 17.5,
+			"depth": 17.5
+		}
+	],
+	
+	"materials": [
+		{
+			"uuid": "mat.cube",
+			"type": "MeshPhongMaterial",
+			"color": 10526975,
+			"ambient": 2105408,
+			"specular": 2105408,
+			"shininess": 75
+		}
+	]
+}

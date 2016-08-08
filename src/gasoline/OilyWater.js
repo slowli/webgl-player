@@ -1,6 +1,5 @@
 /**
  * Water with thin film on it.
- *
  * @author Alex Ostrovski
  */
 
@@ -24,8 +23,8 @@ var OilyWaterShader = {
 			
 			distortion: { type: 'f', value: 1.5 },
 			reflectionFactor: { type: 'f', value: 0.35 },
-			waterColor: { type: 'c', value: new THREE.Color(0x103040) },
-			oilColor: { type: 'c', value: new THREE.Color(0x303030) },
+			waterColor: { type: 'c', value: new THREE.Color(0x202028) },
+			oilColor: { type: 'c', value: new THREE.Color(0x505050) },
 			thicknessRange: { type: 'f', value: 2.5 }
 		}
 	]),
@@ -100,39 +99,30 @@ var OilyWaterShader = {
 		'	vec3 normal = getNoise(normalsSampler, vPosition.xz * 10.0, time).xzy;',
 		'	normal = 2.0 * normal - 1.0;',
 		
-		//'	vec2 dN = vec2(dFdx(normal.x), dFdy(normal.z));',
-		//'	gl_FragColor = vec4(dN, 0.0, 1.0); return;',
-		
 		//'	normal = mix(normal, vec3(0.0, 1.0, 0.0), filmI * 0.5);', // film is disturbed less than water
 		
 		// Calculate distortion before we transform the normal from world to view coordinates
 		'	vec2 refPos = vTexturePos.xy + normal.xz * distortion;',
 		
 		'	float thickness = thicknessRange * getRecursiveNoise(noiseSampler, vUv - 0.01 * normal.xz, 0.0).b;',
-		//'	gl_FragColor = vec4(vec3(thickness), 1.0); return;',
 		
 		'	float filmI = smoothstep(0.0, 1.0, thickness);',
-		//'	const float filmI = 0.0;', 
-		//'	const float thickness = 0.0;',
 		
 		// Interpolate surface parameters
 		'	float mirrorC = mix(waterMirrorReflectivity, filmMirrorReflectivity, filmI);',
 		'	float shininess = mix(waterShininess, filmShininess, filmI);',
 		'	float reflectionFactor = mix(waterReflectionFactor, filmReflectionFactor, filmI);',
-		'	vec3 surfaceColor = mix(vec3(0.15), vec3(0.3), filmI);', // mix(waterColor, filmColor, filmI);
+		'	vec3 surfaceColor = mix(waterColor, filmColor, filmI);',
 		
 		'	const float specularStrength = 1.0;',
 
 		'	normal = normalize(normalMatrix * normal.xzy);',
 		'	float theta = max(dot(normalize(vViewPosition), normal), 0.0);',
-		//'	gl_FragColor = vec4(vec3(theta), 1.0); return;',
 		
 		'	vec3 intfColor = vec3(interference(thickness, theta), interference(thickness * 1.29, theta), interference(thickness * 1.45, theta));',
-		//'	gl_FragColor = vec4(intfColor, 1.0); return;',
 		
 		'	vec3 skyColor = texture2D(skySampler, refPos / vTexturePos.w).rgb;',
 		'	float reflectance = reflectionFactor + (1.0 - reflectionFactor) * pow((1.0 - theta), 5.0);',
-		//'	gl_FragColor = vec4(skyColor, 1.0); return;',
 		
 		THREE.ShaderChunk.lights_phong_fragment,
 		

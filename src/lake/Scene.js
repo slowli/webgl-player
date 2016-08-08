@@ -151,4 +151,3 @@ NightLakeScene.prototype.render = function(dt) {
 namespace.NightLakeScene = NightLakeScene;
 
 })(THREE);
-

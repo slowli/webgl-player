@@ -699,16 +699,16 @@ function WebGLPlayer(params) {
 
 // Default English messages
 WebGLPlayer.messages = {
-	'start_title': 'Load resources and start rendeding',
-	'loading_scripts': 'Loading scripts',
-	'loading_textures': 'Loading textures',
-	'load_error': 'Error loading resources',
-	'resolution_title': 'Set rendering resolution',
-	'fullscreen_title': 'Toggle fullscreen',
-	'pause_title': 'Pause scene',
-	'resume_title': 'Resume scene',
-	'capture_title': 'Capture scene as an image',
-	'stats_title': 'Toggle statistics'
+	start_title: 'Load resources and start rendeding',
+	loading_scripts: 'Loading scripts',
+	loading_textures: 'Loading textures',
+	load_error: 'Error loading resources',
+	resolution_title: 'Set rendering resolution',
+	fullscreen_title: 'Toggle fullscreen',
+	pause_title: 'Pause scene',
+	resume_title: 'Resume scene',
+	capture_title: 'Capture scene as an image',
+	stats_title: 'Toggle statistics'
 };
 
 // Exports

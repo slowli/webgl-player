@@ -8,13 +8,13 @@
 // TODO remove; implement as postprocessing
 // XXX is it used?
 var HaloShader = {
-	'uniforms': {
+	uniforms: {
 		'haloColor': { type: 'c', value: new THREE.Color(0xffffff) },
 		
 		'time': { type: 'f', value: 0.0 }
 	},
 	
-	'vertexShader': [
+	vertexShader: [
 		'varying vec3 vViewPosition;',
 		'varying vec3 vViewNormal;',
 		'varying vec3 vNormal;',
@@ -30,7 +30,7 @@ var HaloShader = {
 		'}'
 	].join('\n'),
 	
-	'fragmentShader': [
+	fragmentShader: [
 		'varying vec3 vViewPosition;',
 		'varying vec3 vViewNormal;',
 		'varying vec3 vNormal;',
@@ -46,41 +46,6 @@ var HaloShader = {
 		'}'
 	].join('\n')
 };
-
-// XXX remove
-/*function Planet(mass, radius, options) {
-	THREE.Mesh.call(this);
-
-	if (!options) options = {};
-	options.surfaceColor = options.surfaceColor || new THREE.Color(0xc0d0ff);
-	options.cloudColor = options.cloudColor || new THREE.Color(0xffffff);
-	if (options.lighting == undefined) {
-		options.lighting = true;
-	}
-	options.cloudSpeed = options.cloudSpeed || 0.0;
-	options.cloudIntencity = options.cloudIntencity || 1.0;
-	
-	this.geometry = new THREE.SphereGeometry(0.9 * radius, 50, 30);
-	
-	var shader = CloudyPlanetShader;
-	this.material = new THREE.ShaderMaterial({
-		'uniforms': THREE.UniformsUtils.clone(shader.uniforms),
-		'defines': { 'LIGHTING': options.lighting },
-		'vertexShader': shader.vertexShader,
-		'fragmentShader': shader.fragmentShader,
-		'lights': options.lighting,
-		//'transparent': true // Doesn't work well with particles
-	});
-	this.material.uniforms['surfaceColor'].value = options.surfaceColor;
-	this.material.uniforms['cloudColor'].value = options.cloudColor;
-	this.material.uniforms['cloudIntencity'].value = options.cloudIntencity;
-	
-	this.mass = mass;
-	this.radius = radius;
-	this.cloudSpeed = options.cloudSpeed;
-	
-	
-}*/
 
 function Planet() {}
 

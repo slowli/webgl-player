@@ -1,6 +1,5 @@
 /**
  * Common math utilities and shader chunks for use with THREE.js.
- * 
  * @author Alex Ostrovski
  */
 
@@ -337,60 +336,6 @@ THREE.ShaderChunk.noise = [
 	'	return noise * 0.25;',
 	'}'
 ].join('\n');
-
-/* FIXME: remove
-THREE.ShaderChunk.phong_lighting = [
-	'void processLights(vec3 position, vec3 normal, vec3 cameraDir, inout vec3 diffuseL, inout vec3 specularL) {',
-	'	diffuseL = ambientLightColor;',
-	'	vec3 lightDir, reflectDir;',
-	'	float diffusedI, specI, spotEffect;',
-	
-	'	#if MAX_DIR_LIGHTS > 0',
-	'	for (int i = 0; i < MAX_DIR_LIGHTS; i++) {',
-	'		lightDir =-directionalLightDirection[i];',
-	'		reflectDir = reflect(lightDir, normal);',
-	'		diffusedI = max(dot(-normal, lightDir), 0.0);',
-	'		specI = max(dot(reflectDir, cameraDir), 0.0);',
-	'		specI = pow(specI, shininess);',
-	'		float lightI = 1.0;',
-	'		diffuseL += lightI * diffusedI * directionalLightColor[i];',
-	'		specularL += lightI * specI * directionalLightColor[i];',
-	'	}',
-	'	#endif',
-	
-	'	#if MAX_POINT_LIGHTS > 0',
-	'	for (int i = 0; i < MAX_POINT_LIGHTS; i++) {',
-	'		lightDir = normalize(position - pointLightPosition[i]);',
-	'		reflectDir = reflect(lightDir, normal);',
-	'		diffusedI = max(dot(-normal, lightDir), 0.0);',
-	'		specI = max(dot(reflectDir, cameraDir), 0.0);',
-	'		specI = pow(specI, shininess);',
-	'		float lightI = (pointLightDistance[i] > 0.0)',
-	'			? max(0.0, 1.0 - distance(position, pointLightPosition[i]) / pointLightDistance[i])',
-	'			: 1.0;',
-	'		diffuseL += lightI * diffusedI * pointLightColor[i];',
-	'		specularL += lightI * specI * pointLightColor[i];',
-	'	}',
-	'	#endif',
-	
-	'	#if MAX_SPOT_LIGHTS > 0',
-	'	for (int i = 0; i < MAX_SPOT_LIGHTS; i++) {',
-	'		lightDir = normalize(position - spotLightPosition[i]);',
-	'		reflectDir = reflect(lightDir, normal);',
-	'		diffusedI = max(dot(-normal, lightDir), 0.0);',
-	'		specI = max(dot(reflectDir, cameraDir), 0.0);',
-	'		specI = pow(specI, shininess);',
-	'		float lightI = (spotLightDistance[i] > 0.0)',
-	'			? max(0.0, 1.0 - distance(position, spotLightPosition[i]) / spotLightDistance[i])',
-	'			: 1.0;',
-	'		spotEffect = pow(max(dot(-spotLightDirection[i], lightDir), 0.0), spotLightExponent[i]);',
-	'		lightI *= spotEffect;',
-	'		diffuseL += lightI * diffusedI * spotLightColor[i];',
-	'		specularL += lightI * specI * spotLightColor[i];',
-	'	}',
-	'	#endif',
-	'}'
-].join('\n');*/
 
 THREE.ShaderChunk.recursive_noise_3d = [
 	'mat3 rotationAxis(vec3 axis, float angle) {',

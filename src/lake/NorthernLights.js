@@ -1,6 +1,5 @@
 /**
  * Northern lights shader.
- *
  * @author Alex Ostrovski
  */
 
@@ -71,11 +70,9 @@ var NorthernLights_Shader = {
 		'	vec3 upColor = /*diffuseColor + colorSpread */ noise.brg  * vec3(1.0, 0.65, 1.25) + vec3(0.0, 0.0, 0.1);',
 		
 		'	noise = getNoise(noiseSampler, vPosition.yy, t);',
-		//'	float end = 1.5;',
 		'	float end = 1.0 / (0.2 + spatialSpread * noise.g);',
 		'	baseColor = mix(baseColor, upColor, min(vUv.y * end * 1.65, 1.0));',
 		'	float I = noise.b + 0.1;',
-		//'	float I = 0.6;',
 		'	vec3 color = baseColor * I * 2.0 + (baseColor * baseColor - 0.05);',
 		
 		'	if( color.r > 1.0 ){ color.bg += color.r - 1.0; }',
@@ -84,7 +81,6 @@ var NorthernLights_Shader = {
 		
 		'	float alpha = smoothedge(0.1, 0.6, vUv.y * end);',
 		'	gl_FragColor = vec4(color, alpha * pow(theta, 2.0));',
-		//'	gl_FragColor = vec4(vec3(vPosition.x), alpha * pow(theta, 2.0));',
 		'}'
 	].join('\n')
 };

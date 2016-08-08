@@ -1,6 +1,6 @@
 /**
  * Firefly shader and corresponding mesh.
- * (c) 2014 Alex Ostrovski
+ * @author Alex Ostrovski
  */
  
 (function(namespace) {
@@ -110,8 +110,6 @@ Firefly.prototype.setTime = function(dummy, delta) {
 	var t = this._moveTime / this._moveDuration;
 	
 	this.position.copy(this._curve.position(t));
-	//!var tangent = this._curve.tangent(t).normalize();
-	//this.material.uniforms['direction'].value = tangent;
 	
 	if (this._debug) {
 		this._dirHelper.setDirection(tangent);

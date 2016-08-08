@@ -1,7 +1,7 @@
 WebGL Player
 ==========================
 
-YouTube-like WebGL player widget. Uses [jQuery](http://jquery.com/") 
+YouTube-like WebGL player widget. Uses [jQuery](http://jquery.com/) 
 and [THREE.js](http://threejs.org/).
 Comes with a bundle of demos.
 
